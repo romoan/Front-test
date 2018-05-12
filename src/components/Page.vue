@@ -39,5 +39,9 @@
 <style scoped>
     .page-layout {
         background-color: #2d2c31;
+        max-width: 1520px;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 20px 80px;
     }
 </style>

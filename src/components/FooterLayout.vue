@@ -21,15 +21,16 @@
 
 <style scoped>
     .footer-layout {
+        text-align: center;
         width: 100%;
+        padding: 20px;
     }
 
     .more-button {
-        margin: 0 auto;
-        text-align: center;
         padding: 10px 20px;
         background-color: #33de00;
         border-radius: 2px;
         color: white;
+        text-transform: uppercase;
     }
 </style>
