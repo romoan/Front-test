@@ -1,5 +1,5 @@
 <template>
-    <div class="page-layout">
+    <div class="page-layout col-xs-12">
         <HeaderLayout :items="items" :title="pageTitle"/>
 
         <ContentLayout :items="items"/>
