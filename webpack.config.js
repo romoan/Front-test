@@ -1,25 +1,31 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  module: {
-      rules: [
-        {
-            test: /\.vue$/,
-            exclude: /node_modules/,
-            loader: 'vue-loader'
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
         },
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-            loader: 'babel-loader'
+        extensions: ['*', '.js', '.vue', '.json']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                exclude: /node_modules/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
             }
-        }
-      ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
-  ]
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ]
 };

@@ -1,14 +1,14 @@
 <template>
-  <h1>{{ message }}</h1>
+    <div>
+        <Page/>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data() {
-    return {
-      message: 'Holis, Vue!'
+    import Page from './components/Page'
+
+    export default {
+        name: 'app',
+        components: {Page}
     }
-  }
-}
 </script>
