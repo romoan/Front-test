@@ -3,27 +3,20 @@
         <h1>
             CONTENT
         </h1>
-        <h2>
-            {{data.pageTitle}}
-        </h2>
     </div>
     
 </template>
 
 <script>
-    import {parsedData} from "../libraries/dataParser";
+    import {parsedData, parsedData2} from "../libraries/dataParser";
 
     export default {
         name: "ContentLayout",
-        data() {
-            return {
-                data: {}
+        props: {
+            items: {
+                type: Object,
+                default: {}
             }
-        },
-        mounted() {
-            this.$nextTick(() => {
-              this.data = parsedData
-            })
         }
     }
 </script>

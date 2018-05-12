@@ -1,10 +1,10 @@
 <template>
     <div class="page-layout">
-        <HeaderLayout/>
+        <HeaderLayout :items="items" :title="pageTitle"/>
 
-        <ContentLayout/>
+        <ContentLayout :items="items"/>
 
-        <FooterLayout/>
+        <FooterLayout :buttonLabel="viewMoreLabel"/>
 
     </div>
 </template>
@@ -13,17 +13,24 @@
     import HeaderLayout from './HeaderLayout'
     import ContentLayout from './ContenLayout'
     import FooterLayout from './FooterLayout'
-    import {parsedData} from "../libraries/dataParser";
+    import {JSON_FILE_LOCATION, readTextFile} from "../libraries/dataParser";
 
     export default {
         name: "Page",
         data() {
             return{
-                parsedData: {}
+                items: {},
+                pageTitle: '',
+                viewMoreLabel: ''
             }
         },
         mounted () {
-            this.parsedData = parsedData
+            readTextFile(JSON_FILE_LOCATION, (text) => {
+                const parsedData = JSON.parse(text)
+                this.items = parsedData.items
+                this.pageTitle = parsedData.pageTitle
+                this.viewMoreLabel = parsedData.viewMoreLabel
+            })
         },
         components: {FooterLayout, ContentLayout, HeaderLayout}
     }

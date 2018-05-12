@@ -1,6 +1,6 @@
-const JSON_FILE_LOCATION = './src/datas.json'
+export const JSON_FILE_LOCATION = './src/datas.json'
 
-const readTextFile = (file, callback) => {
+export const readTextFile = (file, callback) => {
     let content = ''
     let rawFile = new XMLHttpRequest()
     rawFile.overrideMimeType("application/json")
@@ -13,11 +13,3 @@ const readTextFile = (file, callback) => {
     rawFile.send(null)
     return content
 }
-
-const jsonParserCallback = (text) => {
-    const parsedData = JSON.parse(text)
-    console.log(parsedData)
-    return parsedData
-}
-
-export const parsedData = Object.freeze(readTextFile(JSON_FILE_LOCATION, jsonParserCallback))

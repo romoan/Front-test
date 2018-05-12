@@ -1,7 +1,7 @@
 <template>
     <div class="footer-layout">
         <a class="more-button">
-            VER MÁS
+            {{ buttonLabel }}
         </a>
     </div>
     
@@ -9,7 +9,13 @@
 
 <script>
     export default {
-        name: "FooterLayout"
+        name: "FooterLayout",
+        props: {
+            buttonLabel: {
+                type: String,
+                Default: ''
+            }
+        }
     }
 </script>
 

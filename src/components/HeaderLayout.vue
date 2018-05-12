@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>
-            LISTADO
+            {{ title }}
         </h1>
     </div>
     
@@ -9,7 +9,17 @@
 
 <script>
     export default {
-        name: "HeaderLayout"
+        name: "HeaderLayout",
+        props: {
+            items: {
+                type: Object,
+                default: {}
+            },
+            title: {
+                type: String,
+                default: ''
+            }
+        }
     }
 </script>
 
