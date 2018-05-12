@@ -23,7 +23,7 @@
         name: "ContentLayout",
         props: {
             items: {
-                type: Object,
+                type: Array,
                 default: {}
             }
         },

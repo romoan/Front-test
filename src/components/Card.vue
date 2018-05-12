@@ -15,7 +15,7 @@
     import fallbackImage from '../asets/images/fake-image-player-V.jpg'
 
     export default {
-        name: "Card.vue",
+        name: "Card",
         props: {
             imageURL: {
                 type: String,
@@ -43,9 +43,8 @@
             },
             roleLink: {
                 type: Object,
-                default: {
-                    URL: '',
-                    target: null
+                default: () => {
+                    return { URL: '', target: null }
                 }
             }
         },
@@ -83,7 +82,7 @@
 <style scoped>
     .card-slot{
         display: inline-block;
-        padding: 10px;
+        padding: 0.6% 0.9%;
     }
     .card {
         width: 100%;

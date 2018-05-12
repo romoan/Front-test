@@ -1,11 +1,13 @@
 <template>
-    <div class="page-layout col-xs-12">
-        <HeaderLayout :items="items" :title="pageTitle"/>
+    <div class="external-margin">
+        <div class="page-layout col-xs-12">
+            <HeaderLayout :items="items" :title="pageTitle"/>
 
-        <ContentLayout :items="items"/>
+            <ContentLayout :items="items"/>
 
-        <FooterLayout :buttonLabel="viewMoreLabel"/>
+            <FooterLayout :buttonLabel="viewMoreLabel"/>
 
+        </div>
     </div>
 </template>
 
@@ -19,7 +21,7 @@
         name: "Page",
         data() {
             return{
-                items: {},
+                items: [],
                 pageTitle: '',
                 viewMoreLabel: ''
             }
@@ -37,11 +39,16 @@
 </script>
 
 <style scoped>
-    .page-layout {
+    .external-margin {
         background-color: #2d2c31;
-        max-width: 1520px;
+        max-width: 1579px;
         margin-right: auto;
         margin-left: auto;
-        padding: 20px 80px;
+    }
+    .page-layout {
+        max-width: 1362px;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 2% 0.7%;
     }
 </style>
