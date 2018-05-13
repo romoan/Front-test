@@ -1,6 +1,6 @@
 <template>
-    <div class="card-slot col-sm-6 col-md-3">
-        <img class="card" :src="imageSRC" :style="style" @click="relocate"/>
+    <div class="card-slot col-sm-6 col-md-3" :style="style" @click="relocate">
+        <img class="card" :src="imageSRC" />
         <span class="card-content">
             <a class="card-title" v-if="nick">{{nick}}</a>
             <a class="card-title" v-if="team">{{team}}</a>

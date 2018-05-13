@@ -21,7 +21,7 @@
     const ALL_FILTER = 'Ver todos'
 
     export default {
-        extends: LettersLayoutFilter,
+        // extends: LettersLayoutFilter,
         name: "DropdownLayoutFilter",
         props: {
             items: {
