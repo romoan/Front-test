@@ -63,6 +63,9 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
 <style>
+    .dropdown-filter {
+        margin-bottom: 35px;
+    }
     .multiselect-dropdown .multiselect__tags {
         background: #52525b;
         border-color: #2d2c31;
