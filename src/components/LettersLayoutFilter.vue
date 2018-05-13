@@ -54,11 +54,13 @@
         },
         methods: {
             updateSelected(letter) {
-                const availableItems = this.filterItems(letter)
-                const itemsIds = availableItems.map((item) => {
-                    return item.id
-                })
-                this.onChange(letter, itemsIds)
+                if (this.isThereAnyItemForTheLetter(letter)) {
+                    const availableItems = this.filterItems(letter)
+                    const itemsIds = availableItems.map((item) => {
+                        return item.id
+                    })
+                    this.onChange(letter, itemsIds)
+                }
             },
             isThereAnyItemForTheLetter(letter){
                 const itemsWithTheLetter = this.filterItems(letter)
@@ -104,10 +106,11 @@
         margin-left: 1.5%;
     }
     a.available {
-        color: #929194
+        color: #929194;
+        cursor: pointer;
     }
     a.not-available {
-        color: #47474b
+        color: #47474b;
     }
     a.all {
         color: #2d2c31;

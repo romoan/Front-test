@@ -37,7 +37,6 @@
         },
         computed: {
             itemsToShow() {
-                debugger
                 if (this.filteredIds.length == 0){
                     return this.items
                 }

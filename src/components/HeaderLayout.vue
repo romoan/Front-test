@@ -4,6 +4,7 @@
             {{ title }}
         </h1>
         <LettersLayoutFilter
+            v-show="isDesktopMode"
             :items="items"
             :onChange="onChange"
             :value="value"
@@ -14,6 +15,7 @@
 
 <script>
     import LettersLayoutFilter from './LettersLayoutFilter'
+    import $ from 'jquery'
     export default {
         name: "HeaderLayout",
         props: {
@@ -32,13 +34,26 @@
         data() {
             return {
                 value: '',
+                windowWidth: $(window).width()
+            }
+        },
+        computed: {
+            isDesktopMode(){
+                debugger
+                return this.windowWidth > 1360
             }
         },
         methods: {
             onChange(value, itemsIds){
                 this.value = value
                 this.$emit('change', itemsIds)
+            },
+            onResize(){
+                this.windowWidth = $(window).width()
             }
+        },
+        mounted() {
+            window.addEventListener('resize', this.onResize)
         },
         components: {LettersLayoutFilter}
     }
