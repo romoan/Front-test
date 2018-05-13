@@ -1,21 +1,28 @@
 <template>
-    <div class="letters-layout-filter">
-        <a v-for="letterFilter in letterFilters"
-           :class="['letters',isSelected(letterFilter.value), letterFilter.availableClass]"
-           @click="updateSelected(letterFilter.value)"
+    <div class="dropdown-filter">
+        <Multiselect
+            v-model="selected"
+            :options="letters"
+            :show-labels="false"
+            :searchable="false"
+            :allow-empty="false"
+            @select="select"
         >
-            {{letterFilter.value}}
-        </a>
+        </Multiselect>
     </div>
     
 </template>
 
 <script>
+    import LettersLayoutFilter from './LettersLayoutFilter'
+    import Multiselect from 'vue-multiselect'
+
     const NUMERIC_FILTER = '0-9'
     const ALL_FILTER = 'Ver todos'
 
     export default {
-        name: "LettersLayoutFilter",
+        extends: LettersLayoutFilter,
+        name: "DropdownLayoutFilter",
         props: {
             items: {
                 type: Array,
@@ -35,32 +42,25 @@
             alphabet.push(ALL_FILTER)
             return {
                 letters: alphabet,
+                selected: ALL_FILTER
             }
         },
+        watch: {
+        },
         computed: {
-            selectedValue(){
-                if (this.value === '') {
-                    return ALL_FILTER
-                }
-                return this.value
-            },
-            letterFilters() {
-                return this.letters.map((letter) => {
-                    return {
-                        value: letter,
-                        availableClass: this.isThereAnyItemForTheLetter(letter) ? 'available' : 'not-available'
-                    }
-                })
-            },
         },
         methods: {
-            updateSelected(letter) {
-                if (this.isThereAnyItemForTheLetter(letter)) {
-                    const availableItems = this.filterItems(letter)
+            select(value) {
+                debugger
+                this.selected = value
+                if (this.selected == ALL_FILTER) {
+                    this.selectAll()
+                } else if (this.isThereAnyItemForTheLetter(this.selected)) {
+                    const availableItems = this.filterItems(this.selected)
                     const itemsIds = availableItems.map((item) => {
                         return item.id
                     })
-                    this.onChange(letter, itemsIds)
+                    this.onChange(this.selected, itemsIds)
                 }
             },
             isThereAnyItemForTheLetter(letter){
@@ -70,8 +70,6 @@
             filterItems(letter){
                 if (letter === NUMERIC_FILTER) {
                     return this.itemsWithNumbers()
-                } else if (letter === ALL_FILTER){
-                    return this.items
                 }
                 return this.itemsWithTheLetter(letter)
             },
@@ -86,39 +84,19 @@
                     return nick.includes(letter.toLowerCase())
                 })
             },
-            isSelected(value) {
-                return value === this.selectedValue ? 'selected' : ''
-            },
             selectAll(){
                 const itemsIds = this.items.map((item) => {
                     return item.id
                 })
                 this.onChange('', itemsIds)
             }
-        }
+        },
+        components: {Multiselect}
     }
 </script>
 
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
 <style scoped>
-    .letters-layout-filter {
-        width: 100%;
-        margin-bottom: 35px;
-    }
-    a.letters {
-        font-size: 22px;
-        margin-left: 1.5%;
-    }
-    a.available {
-        color: #929194;
-        cursor: pointer;
-    }
-    a.not-available {
-        color: #47474b;
-    }
-    a.selected {
-        padding: 9px 9px 6px 9px;
-        background-color: #33de00;
-        border-radius: 3px;
-        margin-left: 5px;
-    }
+
 </style>

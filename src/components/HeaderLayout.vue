@@ -9,13 +9,21 @@
             :onChange="onChange"
             :value="value"
         />
+        <DropdownLayoutFilter
+            v-show="!isDesktopMode"
+            :items="items"
+            :onChange="onChange"
+            :value="value"
+        />
     </div>
     
 </template>
 
 <script>
     import LettersLayoutFilter from './LettersLayoutFilter'
+    import DropdownLayoutFilter from './DropdownLayoutFilter'
     import $ from 'jquery'
+
     export default {
         name: "HeaderLayout",
         props: {
@@ -39,7 +47,6 @@
         },
         computed: {
             isDesktopMode(){
-                debugger
                 return this.windowWidth > 1360
             }
         },
@@ -55,7 +62,7 @@
         mounted() {
             window.addEventListener('resize', this.onResize)
         },
-        components: {LettersLayoutFilter}
+        components: {LettersLayoutFilter, DropdownLayoutFilter}
     }
 </script>
 
