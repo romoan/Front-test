@@ -6,6 +6,7 @@
         <LettersLayoutFilter
             :items="items"
             :onChange="onChange"
+            :value="value"
         />
     </div>
     
@@ -23,11 +24,20 @@
             title: {
                 type: String,
                 default: ''
+            },
+            filteredIds: {
+                type: Array
+            }
+        },
+        data() {
+            return {
+                value: '',
             }
         },
         methods: {
-            onChange(value){
-                // TO-DO
+            onChange(value, itemsIds){
+                this.value = value
+                this.$emit('change', itemsIds)
             }
         },
         components: {LettersLayoutFilter}

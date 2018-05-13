@@ -93,7 +93,7 @@
     .card-content {
         position: absolute;
         bottom: 0;
-        padding-bottom: 17px;
+        padding-bottom: 9.6%;
         color: white;
         text-align: center;
         width: 100%;
@@ -111,7 +111,7 @@
     }
     .card-role {
         border: 1px solid white;
-        padding: 3px 5px;
+        padding: 4px 7px;
         border-radius: 12px;
     }
 </style>

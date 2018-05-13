@@ -1,9 +1,9 @@
 <template>
     <div class="external-margin">
         <div class="page-layout col-xs-12">
-            <HeaderLayout :items="items" :title="pageTitle"/>
+            <HeaderLayout :items="items" :title="pageTitle" @change="onChange"/>
 
-            <ContentLayout :items="items"/>
+            <ContentLayout :items="itemsToShow"/>
 
             <FooterLayout :buttonLabel="viewMoreLabel"/>
 
@@ -23,7 +23,8 @@
             return{
                 items: [],
                 pageTitle: '',
-                viewMoreLabel: ''
+                viewMoreLabel: '',
+                filteredIds: []
             }
         },
         mounted () {
@@ -33,6 +34,22 @@
                 this.pageTitle = parsedData.pageTitle
                 this.viewMoreLabel = parsedData.viewMoreLabel
             })
+        },
+        computed: {
+            itemsToShow() {
+                debugger
+                if (this.filteredIds.length == 0){
+                    return this.items
+                }
+                return this.items.filter((item) => {
+                    return this.filteredIds.includes(item.id)
+                })
+            }
+        },
+        methods: {
+            onChange(itemsIds) {
+                this.filteredIds = itemsIds
+            }
         },
         components: {FooterLayout, ContentLayout, HeaderLayout}
     }
