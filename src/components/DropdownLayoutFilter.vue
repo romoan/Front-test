@@ -1,12 +1,15 @@
 <template>
     <div class="dropdown-filter">
         <Multiselect
+            class="multiselect-dropdown"
             v-model="selected"
-            :options="letters"
+            :options="letterFilters"
             :show-labels="false"
             :searchable="false"
             :allow-empty="false"
-            @select="select"
+            @select="updateSelected"
+            label="label"
+            track-by="label"
         >
         </Multiselect>
     </div>
@@ -17,79 +20,41 @@
     import LettersLayoutFilter from './LettersLayoutFilter'
     import Multiselect from 'vue-multiselect'
 
-    const NUMERIC_FILTER = '0-9'
     const ALL_FILTER = 'Ver todos'
 
     export default {
-        // extends: LettersLayoutFilter,
+        extends: LettersLayoutFilter,
         name: "DropdownLayoutFilter",
-        props: {
-            items: {
-                type: Array,
-                required: true
-            },
-            onChange: {
-                type: Function
-            },
-            value: {
-                type: String,
-                default: ALL_FILTER
-            }
-        },
-        data() {
-            const alphabet = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
-            alphabet.unshift(NUMERIC_FILTER)
-            alphabet.push(ALL_FILTER)
-            return {
-                letters: alphabet,
-                selected: ALL_FILTER
-            }
-        },
-        watch: {
-        },
         computed: {
+            selected(){
+                if (this.value === '') {
+                    return {label: ALL_FILTER, $isDisabled: false}
+                }
+                return this.letterFilters.find((option) => {
+                    return option.label === this.value
+                })
+            },
+            letterFilters(){
+                return this.letters.map((letter) => {
+                    if (this.isThereAnyItemForTheLetter(letter)){
+                        return {label: letter, $isDisabled: false}
+                    }
+                    return {label: letter, $isDisabled: true}
+                })
+            },
         },
         methods: {
-            select(value) {
-                debugger
-                this.selected = value
-                if (this.selected == ALL_FILTER) {
+            updateSelected(value) {
+                if (value.label === ALL_FILTER) {
                     this.selectAll()
-                } else if (this.isThereAnyItemForTheLetter(this.selected)) {
-                    const availableItems = this.filterItems(this.selected)
+                } else if (this.isThereAnyItemForTheLetter(value.label)) {
+                    const availableItems = this.filterItems(value.label)
                     const itemsIds = availableItems.map((item) => {
                         return item.id
                     })
-                    this.onChange(this.selected, itemsIds)
+                    this.onChange(value.label, itemsIds)
                 }
             },
-            isThereAnyItemForTheLetter(letter){
-                const itemsWithTheLetter = this.filterItems(letter)
-                return itemsWithTheLetter.length > 0
-            },
-            filterItems(letter){
-                if (letter === NUMERIC_FILTER) {
-                    return this.itemsWithNumbers()
-                }
-                return this.itemsWithTheLetter(letter)
-            },
-            itemsWithNumbers(){
-                return this.items.filter((item) => {
-                    return /\d/.test(item.nick)
-                })
-            },
-            itemsWithTheLetter(letter){
-                return this.items.filter((item) => {
-                    const nick = item.nick ? item.nick.toLowerCase() : ''
-                    return nick.includes(letter.toLowerCase())
-                })
-            },
-            selectAll(){
-                const itemsIds = this.items.map((item) => {
-                    return item.id
-                })
-                this.onChange('', itemsIds)
-            }
         },
         components: {Multiselect}
     }
@@ -97,6 +62,31 @@
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-<style scoped>
-
+<style>
+    .multiselect-dropdown .multiselect__tags {
+        background: #52525b;
+        border-color: #2d2c31;
+    }
+    .multiselect-dropdown .multiselect__content-wrapper{
+        background: #52525b;
+        border-color: #2d2c31;
+        color: white;
+    }
+    .multiselect-dropdown .multiselect__tags .multiselect__single {
+        color: white;
+        background: #52525b;
+    }
+    .multiselect-dropdown .multiselect__select:before {
+        border-color: white transparent transparent;
+    }
+    .multiselect-dropdown .multiselect__option--selected {
+        background: #cacacd;
+    }
+    .multiselect-dropdown .multiselect__option--highlight {
+        background: #61616b;
+    }
+    .multiselect-dropdown .multiselect__option--disabled{
+        background: #52525b;
+        color: #7f7e81;
+    }
 </style>

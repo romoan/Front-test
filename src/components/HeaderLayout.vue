@@ -41,18 +41,21 @@
         },
         data() {
             return {
-                value: '',
+                valueSelected: '',
                 windowWidth: $(window).width()
             }
         },
         computed: {
             isDesktopMode(){
                 return this.windowWidth > 1360
+            },
+            value(){
+                return this.valueSelected
             }
         },
         methods: {
             onChange(value, itemsIds){
-                this.value = value
+                this.valueSelected = value
                 this.$emit('change', itemsIds)
             },
             onResize(){

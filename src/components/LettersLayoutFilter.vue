@@ -38,7 +38,7 @@
             }
         },
         computed: {
-            selectedValue(){
+            selected(){
                 if (this.value === '') {
                     return ALL_FILTER
                 }
@@ -87,7 +87,7 @@
                 })
             },
             isSelected(value) {
-                return value === this.selectedValue ? 'selected' : ''
+                return value === this.selected ? 'selected' : ''
             },
             selectAll(){
                 const itemsIds = this.items.map((item) => {
