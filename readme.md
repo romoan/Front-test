@@ -22,9 +22,10 @@ https://nodejs.org/en/
 This serves the app in http://localhost:8080/
 
 #Production mode
-In dist directory is the Prod mode compiled project. To recompile the project:
+In dist directory is the Prod mode compiled project. To recompile the project (not necessary since it is versioned):
 
     npm run build
 
-It works in Mozilla Firefox through index.html.
-To test it in Google Chrome you have to run the dev server (npm run dev)
+You can access the app through ./dist/index.html although this doesn't work for most of browsers due to the ajax call for the JSON file.
+
+It works in Mozilla Firefox, though. For other browsers, you'd need to launch it in a server like http-server https://www.npmjs.com/package/http-server
