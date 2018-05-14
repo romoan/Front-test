@@ -5,7 +5,7 @@
   "main": "init.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --mode development --progress --hot --open",
+    "dev": "webpack-dev-server --mode development --progress --open",
     "build": "webpack --mode production --progress"
   },
   "repository": {
@@ -32,6 +32,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
     "vue": "2.5.16",
     "vue-multiselect": "^2.1.0",

@@ -16,7 +16,6 @@
 </template>
 
 <script>
-    import {parsedData, parsedData2} from "../libraries/dataParser"
     import Card from "./Card"
 
     export default {

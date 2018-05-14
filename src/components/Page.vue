@@ -15,7 +15,9 @@
     import HeaderLayout from './HeaderLayout'
     import ContentLayout from './ContenLayout'
     import FooterLayout from './FooterLayout'
-    import {JSON_FILE_LOCATION, readTextFile} from "../libraries/dataParser";
+    import $ from 'jquery'
+
+    const JSON_FILE_LOCATION = require('../datas.json')
 
     export default {
         name: "Page",
@@ -28,11 +30,10 @@
             }
         },
         mounted () {
-            readTextFile(JSON_FILE_LOCATION, (text) => {
-                const parsedData = JSON.parse(text)
-                this.items = parsedData.items
-                this.pageTitle = parsedData.pageTitle
-                this.viewMoreLabel = parsedData.viewMoreLabel
+            $.getJSON(JSON_FILE_LOCATION, (data) => {
+                this.items = data.items
+                this.pageTitle = data.pageTitle
+                this.viewMoreLabel = data.viewMoreLabel
             })
         },
         computed: {
