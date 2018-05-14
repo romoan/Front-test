@@ -35,7 +35,9 @@
                 })
             },
             letterFilters(){
-                return this.letters.map((letter) => {
+                // This assignment is for performance improvement
+                const letters = this.letters
+                return letters.map((letter) => {
                     if (this.isThereAnyItemForTheLetter(letter)){
                         return {label: letter, $isDisabled: false}
                     }

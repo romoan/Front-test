@@ -45,7 +45,9 @@
                 return this.value
             },
             letterFilters() {
-                return this.letters.map((letter) => {
+                // This assignment is for performance improvement
+                const letters = this.letters
+                return letters.map((letter) => {
                     return {
                         value: letter,
                         availableClass: this.isThereAnyItemForTheLetter(letter) ? 'available' : 'not-available'
@@ -90,7 +92,9 @@
                 return value === this.selected ? 'selected' : ''
             },
             selectAll(){
-                const itemsIds = this.items.map((item) => {
+                // This assignment is for performance improvement
+                const items = this.items
+                const itemsIds = items.map((item) => {
                     return item.id
                 })
                 this.onChange('', itemsIds)

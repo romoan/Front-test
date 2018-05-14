@@ -15,6 +15,7 @@
     import HeaderLayout from './HeaderLayout'
     import ContentLayout from './ContenLayout'
     import FooterLayout from './FooterLayout'
+    import favicon from '../asets/images/favicon-code.ico'
     import $ from 'jquery'
 
     const JSON_FILE_LOCATION = require('../datas.json')
@@ -35,6 +36,7 @@
                 this.pageTitle = data.pageTitle
                 this.viewMoreLabel = data.viewMoreLabel
             })
+            $("#favicon").attr("href",favicon);
         },
         computed: {
             itemsToShow() {

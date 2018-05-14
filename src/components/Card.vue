@@ -1,5 +1,5 @@
 <template>
-    <div class="card-slot col-sm-6 col-md-3" :style="style" @click="relocate">
+    <div :class="[hasLinkClass, 'card-slot', 'col-sm-6', 'col-md-3']" @click="relocate">
         <img class="card" :src="imageSRC" />
         <span class="card-content">
             <a class="card-title" v-if="nick">{{nick}}</a>
@@ -49,12 +49,12 @@
             }
         },
         computed: {
-            style() {
-                let cursorPointer = ''
+            hasLinkClass() {
+                let hasLinkClass = ''
                 if (this.roleLink.URL) {
-                    cursorPointer = '; cursor: pointer'
+                    hasLinkClass = 'has-link'
                 }
-                return cursorPointer
+                return hasLinkClass
             },
             imageSRC(){
                 let image = fallbackImage
@@ -69,7 +69,7 @@
             relocate() {
                 if (this.roleLink.URL){
                     if (this.roleLink.target){
-                        window.open(this.roleLink.URL, '_blank');
+                        window.open(this.roleLink.URL, this.roleLink.target);
                     } else {
                         window.location.href = this.roleLink.URL
                     }
@@ -83,6 +83,9 @@
     .card-slot{
         display: inline-block;
         padding: 0.6% 0.9%;
+    }
+    .card-slot.has-link {
+        cursor: pointer;
     }
     .card {
         width: 100%;
