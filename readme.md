@@ -16,7 +16,7 @@ That being said, I decided to version the dist directory that is the compiled ap
 
 
 
-## To run the app on any browser:
+## RUN THE APP ON ANY BROWSER:
 
 
 ## Install Node.js and npm
