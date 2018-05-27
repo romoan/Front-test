@@ -14,7 +14,10 @@ That being said, I decided to version the dist directory that is the compiled ap
 
 	./dist/index.html
 
+
+
 ## To run the app on any browser:
+
 
 ## Install Node.js and npm
 
@@ -22,15 +25,18 @@ https://www.npmjs.com/get-npm
 
 https://nodejs.org/en/
 
+
 ## In the project directory get all dependencies
 
 	npm install
+
 
 ## Run the application in dev mode
 	
 	npm run dev
 
 This serves the app in http://localhost:8080/
+
 
 ## Production mode
 In **./dist** directory is the Prod mode compiled project. To recompile the project (not necessary if you don't change anything since it is versioned):
